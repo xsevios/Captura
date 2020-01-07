@@ -164,6 +164,7 @@ namespace Captura
         string Window { get; }
         string WindowScreenShotTransparency { get; }
         string Yes { get; }
+        string Coordinates { get; }
 
         event Action<CultureInfo> LanguageChanged;
     }

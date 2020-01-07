@@ -19,6 +19,11 @@ namespace Captura.ViewModels
                 .Select(M => M is RegionSourceProvider)
                 .ToReadOnlyReactivePropertySlim();
 
+            IsCoordMode = VideoSourcesViewModel
+                .ObserveProperty(M => M.SelectedVideoSourceKind)
+                .Select(M => M is CoordSourceProvider)
+                .ToReadOnlyReactivePropertySlim();
+
             IsAudioMode = VideoSourcesViewModel
                 .ObserveProperty(M => M.SelectedVideoSourceKind)
                 .Select(M => M is NoVideoSourceProvider)
@@ -137,6 +142,8 @@ namespace Captura.ViewModels
         public IReadOnlyReactiveProperty<bool> IsNotAudioOrStepsMode { get; }
 
         public IReadOnlyReactiveProperty<bool> IsRegionMode { get; }
+
+        public IReadOnlyReactiveProperty<bool> IsCoordMode { get; }
 
         public IReadOnlyReactiveProperty<bool> IsAudioMode { get; }
 

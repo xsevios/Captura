@@ -185,6 +185,97 @@
                                     Value="{Binding MainViewModel.Settings.AroundMouse.Margin, Mode=TwoWay, Source={StaticResource ServiceLocator}}"
                                     IsEnabled="{Binding ViewConditions.IsEnabled.Value, Source={StaticResource ServiceLocator}}"/>
             </Grid>
+
+            <Grid Visibility="{Binding ViewConditions.IsCoordMode.Value, Source={StaticResource ServiceLocator}, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Content="Template:"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Margin="5,0,3,0"/>
+                <DockPanel Grid.Column="1"
+                           Grid.Row="0"
+                           Margin="0,5,0,5">
+
+                    <Button DockPanel.Dock="Right"
+                                ToolTipService.ShowDuration="999999999"
+                                ToolTipService.BetweenShowDelay="0"
+                                ToolTipService.InitialShowDelay="0"
+                                Padding="0"
+                                Width="22"
+                                Height="22"
+                                ClickMode="Hover"
+                                ToolTip="{Binding CoordPickerViewModel.CoordinatesTemplateHelp, Mode=OneWay, Source={StaticResource ServiceLocator}}">
+                        <Path Data="{Binding Icons.Help, Source={StaticResource ServiceLocator}}"
+                              Width="10"
+                              Height="10"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Margin="5"/>
+                    </Button>
+
+                    <TextBox DockPanel.Dock="Left" Name="CoordList"
+                             Text="{Binding CoordPickerViewModel.Template, Mode=TwoWay, Source={StaticResource ServiceLocator}, UpdateSourceTrigger=PropertyChanged}" />
+
+                </DockPanel>
+                
+                <Label Content="Result:"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Margin="5,0,3,0"/>
+                <TextBox Name="CoordOutput"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         IsReadOnly="True"
+                         Block.LineHeight="1"
+                         MaxLines="5"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible"
+                         Text="{Binding CoordPickerViewModel.TemplateOutput, Mode=OneWay, Source={StaticResource ServiceLocator}}" />
+
+                <Canvas Grid.Column="1"
+                        Grid.Row="1">
+                    <Button Canvas.Right="37"
+                            Canvas.Top="3"
+                            Padding="0"
+                            Width="16"
+                            Height="16"
+                            DataContext="{Binding CoordPickerViewModel, Source={StaticResource ServiceLocator}}"
+                            ToolTip="{Binding Undo, Source={StaticResource Loc}, Mode=OneWay}"
+                            Command="{Binding UndoCommand}">
+                        <Path Data="{Binding Icons.Undo, Source={StaticResource ServiceLocator}}"
+                              Width="10"
+                              Height="10"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                    </Button>
+                    <Button Canvas.Right="20"
+                            Canvas.Top="3"
+                            Padding="0"
+                            Width="16"
+                            Height="16"
+                            DataContext="{Binding CoordPickerViewModel, Source={StaticResource ServiceLocator}}"
+                            ToolTip="{Binding Clear, Source={StaticResource Loc}, Mode=OneWay}"
+                            Command="{Binding ClearCommand}">
+                        <Path Data="{Binding Icons.Delete, Source={StaticResource ServiceLocator}}"
+                              Width="10"
+                              Height="10"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                    </Button>
+                </Canvas>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>

@@ -84,6 +84,7 @@ namespace Captura
             Binder.BindAsInterfaceAndClass<IVideoSourceProvider, ScreenSourceProvider>();
             Binder.BindAsInterfaceAndClass<IVideoSourceProvider, WindowSourceProvider>();
             Binder.BindAsInterfaceAndClass<IVideoSourceProvider, RegionSourceProvider>();
+            Binder.BindAsInterfaceAndClass<IVideoSourceProvider, CoordSourceProvider>();
         }
 
         static void BindVideoWriterProviders(IBinder Binder)

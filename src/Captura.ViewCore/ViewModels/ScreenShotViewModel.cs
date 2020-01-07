@@ -16,6 +16,8 @@ namespace Captura.ViewModels
         public DiskWriter DiskWriter { get; }
         public ClipboardWriter ClipboardWriter { get; }
         public ImageUploadWriter ImgurWriter { get; }
+        public IVideoSourcePicker VideoSourcePicker { get; }
+        public CoordSourceProvider CoordSourceProvider { get; }
 
         public ScreenShotViewModel(ILocalizationProvider Loc,
             Settings Settings,
@@ -25,11 +27,15 @@ namespace Captura.ViewModels
             ScreenShotModel ScreenShotModel,
             VideoSourcesViewModel VideoSourcesViewModel,
             WebcamModel WebcamModel,
+            IVideoSourcePicker VideoSourcePicker,
+            CoordSourceProvider CoordSourceProvider,
             IPlatformServices PlatformServices) : base(Settings, Loc)
         {
             this.DiskWriter = DiskWriter;
             this.ClipboardWriter = ClipboardWriter;
             this.ImgurWriter = ImgurWriter;
+            this.VideoSourcePicker = VideoSourcePicker;
+            this.CoordSourceProvider = CoordSourceProvider;
 
             ScreenShotCommand = new[]
                 {
@@ -103,6 +109,14 @@ namespace Captura.ViewModels
 
                     await ScreenShotModel.ScreenshotScreen();
                 });
+
+            GetCoordCommand = new ReactiveCommand()
+                .WithSubscribe(async () =>
+                {
+                    await Task.Delay(300);
+
+                    CoordSourceProvider.PickCoordites();
+                });
         }
 
         public ICommand ScreenShotCommand { get; }
@@ -111,6 +125,7 @@ namespace Captura.ViewModels
         public ICommand ScreenshotRegionCommand { get; }
         public ICommand ScreenshotWindowCommand { get; }
         public ICommand ScreenshotScreenCommand { get; }
+        public ICommand GetCoordCommand { get; }
 
         public IEnumerable<ImageFormats> ScreenShotImageFormats { get; } = Enum
             .GetValues(typeof(ImageFormats))

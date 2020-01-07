@@ -110,6 +110,8 @@ namespace Captura
 
         public AroundMouseSettings AroundMouse { get; } = new AroundMouseSettings();
 
+        public CoordSettings Coord { get; } = new CoordSettings();
+
         public int PreStartCountdown
         {
             get => Get(0);

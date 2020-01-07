@@ -73,5 +73,7 @@ namespace Captura
         public VideoSourcesViewModel VideoSourcesViewModel => ServiceProvider.Get<VideoSourcesViewModel>();
 
         public RecordingViewModel RecordingViewModel => ServiceProvider.Get<RecordingViewModel>();
+
+        public CoordPickerViewModel CoordPickerViewModel => ServiceProvider.Get<CoordPickerViewModel>();
     }
 }

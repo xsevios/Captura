@@ -61,6 +61,10 @@ namespace Captura.ViewModels
                 case ServiceName.ScreenShotWindow:
                     _screenShotViewModel.ScreenshotWindowCommand.ExecuteIfCan();
                     break;
+
+                case ServiceName.GetRegionCoordinates:
+                    _screenShotViewModel.GetCoordCommand.ExecuteIfCan();
+                    break;
             }
         }
     }

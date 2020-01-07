@@ -976,5 +976,11 @@ namespace Captura
             get => Get();
             set => Set(value);
         }
+
+        public string Coordinates
+        {
+            get => Get();
+            set => Set(value);
+        }
     }
 }

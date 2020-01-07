@@ -69,6 +69,9 @@ namespace Captura.Models
                 case ServiceName.ScreenShotWindow:
                     return "ScreenShot (Window)";
 
+                case ServiceName.GetRegionCoordinates:
+                    return "Pick coordinates";
+
                 default:
                     return SpaceAtCapitals(ServiceName);
             }

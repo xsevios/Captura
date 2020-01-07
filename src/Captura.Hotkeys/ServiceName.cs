@@ -54,6 +54,11 @@
         /// </summary>
         ScreenShotWindow,
 
+        /// <summary>
+        /// Coordinates pick using Region Picker.
+        /// </summary>
+        GetRegionCoordinates,
+
         ShowMainWindow
     }
 }

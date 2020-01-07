@@ -170,5 +170,7 @@ namespace Captura
         string Window { get; }
 
         string YouTube { get; }
+
+        string Coords { get; }
     }
 }
