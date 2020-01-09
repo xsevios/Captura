@@ -126,21 +126,10 @@ namespace Screna
         /// </summary>
         public static IEnumerable<Window> EnumerateVisible()
         {
-            foreach (var window in Enumerate().Where(W => W.IsVisible && !string.IsNullOrWhiteSpace(W.Title)))
+            var list = Enumerate().Where(W => W.IsVisible);
+            foreach (var window in list)
             {
                 var hWnd = window.Handle;
-
-                if (!User32.GetWindowLong(hWnd, GetWindowLongValue.ExStyle).HasFlag(WindowStyles.AppWindow))
-                {
-                    if (User32.GetWindow(hWnd, GetWindowEnum.Owner) != IntPtr.Zero)
-                        continue;
-
-                    if (User32.GetWindowLong(hWnd, GetWindowLongValue.ExStyle).HasFlag(WindowStyles.ToolWindow))
-                        continue;
-
-                    if (User32.GetWindowLong(hWnd, GetWindowLongValue.Style).HasFlag(WindowStyles.Child))
-                        continue;
-                }
 
                 const int dwmCloaked = 14;
 
